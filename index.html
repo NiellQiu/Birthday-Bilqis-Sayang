@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy 21st Birthday, Sayang ♡</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A little birthday corner on the internet for my favourite person." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #f8b4c8;
+      --soft-pink: #ffe4f0;
+      --white: #ffffff;
+      --cream: #fff9f9;
+      --dark: #3d2a35;
+      --accent: #f7d6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffeaf4 0%, #fff9ff 40%, #fdf7ff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .page-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Hero */
+    .hero { position: relative; padding: 72px 16px 96px; text-align: center; overflow: hidden; }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.45; z-index: -1;
+    }
+    .hero::before { width: 380px; height: 380px; background: #ffe0f2; top: -120px; left: -80px; }
+    .hero::after { width: 420px; height: 420px; background: #fbe8ff; bottom: -160px; right: -60px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8); border: 1px solid #ffd6eb; font-size: 12px; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+    .hero-tag span.dot { width: 8px; height: 8px; border-radius: 50%; background: #ff7bb0; }
+    .hero-heading { font-family: "Sacramento", cursive; font-size: clamp(40px, 6vw, 56px); color: #e55f9a; margin-bottom: 6px; }
+    .hero-subtitle { font-weight: 600; font-size: 18px; margin-bottom: 4px; }
+    .hero-age { font-size: 15px; color: #9b6a83; margin-bottom: 18px; }
+    .hero-message { max-width: 640px; margin: 0 auto 26px; font-size: 14px; color: #6a4a5b; }
+    .highlight-name {
+      background: linear-gradient(90deg, #ffe6f2, #fff5f9); padding: 4px 10px; border-radius: 999px; border: 1px solid #ffd0ea;
+      display: inline-block; font-size: 13px; margin-bottom: 24px;
+    }
+    .highlight-name span { font-weight: 600; color: #e3418b; }
+    .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
+    .btn {
+      border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, #ff86b7, #ffb6d9); color: #fff; box-shadow: 0 8px 20px rgba(255, 148, 193, 0.45); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(255, 148, 193, 0.55); }
+    .btn-ghost { background: rgba(255, 255, 255, 0.9); border: 1px solid #ffd6eb; color: #b15886; }
+    .btn-ghost:hover { background: #fff7fb; transform: translateY(-2px); }
+    .hero-bottom-note { font-size: 12px; color: #9b6a83; margin-top: 12px; }
+
+    /* Sections */
+    .section { padding: 40px 16px 20px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-title { font-family: "Sacramento", cursive; font-size: 34px; color: #e55f9a; text-align: center; margin-bottom: 4px; }
+    .section-subtitle { text-align: center; font-size: 14px; color: #8a6078; margin-bottom: 20px; }
+
+    /* Music */
+    .music-card {
+      background: linear-gradient(135deg, #fff6fb, #ffeaf3); border-radius: 24px; padding: 20px 18px;
+      display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 16px;
+      box-shadow: 0 12px 30px rgba(248, 180, 200, 0.35); border: 1px solid #ffd6eb;
+    }
+    .music-meta-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #b36b8a; margin-bottom: 6px; }
+    .music-song-title { font-weight: 700; font-size: 16px; color: #d63c86; margin-bottom: 4px; }
+    .music-artist { font-size: 13px; color: #8e5672; margin-bottom: 12px; }
+    .music-note { font-size: 12px; color: #745066; }
+    .music-actions { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 10px; }
+    .music-btn, .audio-toggle {
+      border-radius: 999px; padding: 9px 14px; font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+      background: #ffffff; border: 1px solid #ffcde7; color: #b83f77; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .music-btn:hover, .audio-toggle:hover { background: #fff7fb; transform: translateY(-1px); }
+    .audio-status { font-size: 11px; color: #874a68; text-align: center; }
+    .music-iframe-wrapper { border-radius: 16px; overflow: hidden; border: 1px solid #ffddea; background: #000; }
+    .music-iframe-wrapper iframe { width: 100%; height: 210px; border: none; }
+    audio { display: none; }
+
+    /* Letter */
+    .letter-card {
+      margin-top: 8px; background: linear-gradient(135deg, #ffffff, #fff4f8); border-radius: 24px; padding: 24px 18px 22px;
+      border: 1px solid #ffe0ef; box-shadow: 0 12px 26px rgba(255, 187, 213, 0.35); position: relative; overflow: hidden;
+    }
+    .letter-card::before {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(255, 216, 236, 0.8) 0, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(243, 222, 255, 0.8) 0, transparent 40%);
+      opacity: 0.7; pointer-events: none;
+    }
+    .letter-inner { position: relative; z-index: 1; }
+    .letter-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #b66b8d; margin-bottom: 8px; }
+    .letter-to { font-family: "Sacramento", cursive; font-size: 28px; color: #e3418b; margin-bottom: 10px; }
+    .letter-body { font-size: 14px; color: #5e3e50; margin-bottom: 16px; white-space: pre-line; }
+    .letter-sign { margin-top: 4px; font-size: 13px; color: #8d5b75; }
+
+    /* Gallery */
+    .gallery-wrapper {
+      margin-top: 8px; background: #fff9fc; border-radius: 24px; padding: 18px 14px 20px;
+      border: 1px solid #ffe0f0; box-shadow: 0 10px 26px rgba(252, 193, 218, 0.35);
+    }
+    .gallery-header { display: flex; align-items: baseline; justify-content: space-between; column-gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .gallery-header h3 { font-weight: 700; font-size: 15px; color: #cf3d80; }
+    .gallery-header span { font-size: 11px; color: #9c6782; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .gallery-item {
+      position: relative; border-radius: 18px; overflow: hidden; background: #f5dce9; border: 1px solid #ffd7eb; cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s; opacity: 0; transform: translateY(12px);
+    }
+    .gallery-item.visible { opacity: 1; transform: translateY(0); transition: opacity 0.4s ease-out, transform 0.4s ease-out, box-shadow 0.18s ease, border-color 0.18s; }
+    .gallery-item:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(212, 133, 173, 0.5); border-color: #ffb7dd; }
+    .gallery-item img { width: 100%; height: 210px; object-fit: cover; display: block; filter: saturate(1.08); }
+    .gallery-caption {
+      position: absolute; inset: auto 0 0 0; padding: 10px 11px 9px;
+      background: linear-gradient(to top, rgba(32, 7, 19, 0.72), rgba(32, 7, 19, 0.05)); color: #ffe8f5; font-size: 11px;
+    }
+    .gallery-caption span.label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; display: block; margin-bottom: 2px; }
+    .gallery-caption p { font-size: 11px; line-height: 1.4; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(15, 4, 10, 0.9); display: none; align-items: center; justify-content: center;
+      z-index: 1000; padding: 18px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-inner {
+      max-width: 840px; width: 100%; background: #1b1016; border-radius: 24px; overflow: hidden; border: 1px solid #ffb9df;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8); display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    }
+    .lightbox-img-wrapper { background: #000; }
+    .lightbox-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lightbox-info { padding: 16px 16px 14px; color: #ffe8f5; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+    .lightbox-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9ad0; }
+    .lightbox-text { font-size: 13px; line-height: 1.5; }
+    .lightbox-controls { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 4px; }
+    .lb-btn {
+      border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 600; border: none; cursor: pointer;
+      background: rgba(255, 255, 255, 0.1); color: #ffe8f5; display: inline-flex; align-items: center; gap: 4px;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .lb-btn:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-1px); }
+    .lb-btn-close { justify-content: flex-end; font-size: 11px; opacity: 0.85; }
+
+    /* Scroll top */
+    .scroll-top {
+      position: fixed; right: 18px; bottom: 18px; width: 42px; height: 42px; border-radius: 999px; border: none;
+      background: linear-gradient(135deg, #ff86b7, #ffb6d9); color: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 26px rgba(233, 104, 158, 0.65); cursor: pointer; opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease; z-index: 900;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .scroll-top span { font-size: 18px; }
+
+    /* Footer */
+    footer { padding: 18px 14px 26px; text-align: center; font-size: 11px; color: #9c6782; }
+    footer span.heart { color: #ff5e9d; }
+
+    /* Responsive */
+    @media (max-width: 900px) { .lightbox-inner { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+    @media (max-width: 720px) { .music-card { grid-template-columns: minmax(0, 1fr); } .lightbox-inner { grid-template-columns: minmax(0, 1fr); } .lightbox-info { min-height: 160px; } }
+    @media (max-width: 480px) { .hero { padding-top: 60px; padding-bottom: 72px; } .gallery-item img { height: 190px; } }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        <span>14 December • Our little corner on the internet</span>
+      </div>
+      <h1 class="hero-heading">Happy Birthday yaa sayangg babyy ♡</h1>
+      <p class="hero-subtitle">Sweet 21, my favourite girl in this whole world.</p>
+      <p class="hero-age">today is all about you, my manja / sayang / cinta hati / bumbum.</p>
+      <p class="hero-message">
+        This page is just for you – a tiny garden of lilies in pink and white, filled with all our memories,
+        so that no matter where you are, you can open this and remember how loved you are.
+      </p>
+      <div class="highlight-name">
+        For <span>Nur&nbsp;Bilqis binti Muhammad Faiz</span> — from baby, who’s always proud of you.
+      </div>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="scrollToId('gallery')">View our memories</button>
+        <button class="btn btn-ghost" onclick="scrollToId('letter')">Read my little letter</button>
+      </div>
+      <p class="hero-bottom-note">(save this link, so every time you miss me, you can come back here 🤍)</p>
+    </section>
+
+    <!-- Music -->
+    <section class="section" id="music">
+      <div class="section-inner">
+        <h2 class="section-title">Our Birthday Song</h2>
+        <p class="section-subtitle">
+          Press play and let this song be the background while you scroll through everything we’ve been through together.
+        </p>
+        <div class="music-card">
+          <div>
+            <div class="music-meta-label">now playing</div>
+            <div class="music-song-title">Menamakanmu Cinta</div>
+            <div class="music-artist">Dato' Sri Siti Nurhaliza, Ade Govinda</div>
+            <p class="music-note">
+              I wish it could auto-play the moment you open this page, but your browser needs you to press play first.
+              So when you’re ready, click the button, let the song start, and read this page slowly.
+            </p>
+          </div>
+          <div class="music-actions">
+            <button class="audio-toggle" id="audioToggle">▶ Play our song here</button>
+            <p class="audio-status" id="audioStatus">
+              Upload the audio file as <code>audio/menamakanmu-cinta.mp3</code> in this repo, then tap play.
+            </p>
+            <audio id="bgAudio" src="audio/menamakanmu-cinta.mp3"></audio>
+            <button class="music-btn" onclick="document.getElementById('yt-player').scrollIntoView({behavior:'smooth'})">
+              ♬ Or play the official lyric video below
+            </button>
+            <div class="music-iframe-wrapper" id="yt-player">
+              <iframe
+                src="https://www.youtube.com/embed/xomYH9n1tFo"
+                title="Dato' Sri Siti Nurhaliza, Ade Govinda - Menamakanmu Cinta (Official Lyric Video)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section class="section" id="letter">
+      <div class="section-inner">
+        <h2 class="section-title">A Little Letter for You</h2>
+        <p class="section-subtitle">
+          not too long, just enough to say how grateful I am for you at 21 and for every version of you that’s coming.
+        </p>
+        <div class="letter-card">
+          <div class="letter-inner">
+            <div class="letter-tag">from baby, with a heart full of you</div>
+            <div class="letter-to">To my manja, sayang, cinta hati, bumbum 🤍</div>
+            <p class="letter-body">
+              Thank you for letting me grow beside you — through every laugh, every “eh jangan marah”, every late-night talk,
+              every random photo, every small moment that somehow becomes a core memory for me.
+
+              You’re 21 now, but in my eyes you’re still that girl I want to protect, support, and hype up through every exam,
+              every kerja penat, every day you feel tired or not enough. Even on the days you don’t see it,
+              you are so, so much more than enough.
+
+              I pray that this year is filled with rezeki, peace in your heart, good health, and doors opening for your dreams.
+              May Allah always keep you safe, dekat dengan-Nya, and surround you with people who truly love you — and I hope
+              I’ll always be one of those people, insyaAllah.
+
+              Thank you for choosing to walk with me, to share meals with me, to let me see your funny, moody, cute, and sleepy sides.
+              I love you in all your versions: the serious one, the playful one, the hungry one, the quiet one, all of them.
+
+              Happy 21st birthday, sayangg babyy.
+              No matter how many years pass, I’ll still be here, grateful that in this huge world, I get to call you my person.
+            </p>
+            <p class="letter-sign">
+              with all my love,<br/>
+              baby ♡
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="gallery">
+      <div class="section-inner">
+        <h2 class="section-title">Our Little Gallery</h2>
+        <p class="section-subtitle">
+          every photo is a tiny lily petal of our story — soft, silly, simple, but so precious to me.
+        </p>
+        <div class="gallery-wrapper">
+          <div class="gallery-header">
+            <h3>Snapshots of us</h3>
+            <span>tap any photo to see it bigger & read the caption slowly 🤍</span>
+          </div>
+          <div class="gallery-grid" id="galleryGrid">
+            <!-- 1 -->
+            <figure class="gallery-item" data-label="01 • sunshine" data-text="Sun on your face, dimple showing, and me quietly thinking ‘how did I get this lucky?’.">
+              <img src="images/photo-01.jpg" alt="Sunlight selfie standing near the road" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">01 • sunshine</span><p>Sun on your face, dimple showing, and me quietly thinking “how did I get this lucky?”.</p></figcaption>
+            </figure>
+            <!-- 2 -->
+            <figure class="gallery-item" data-label="02 • us" data-text="Just us standing there at night, but in that moment the whole world felt soft.">
+              <img src="images/photo-02.jpg" alt="Night outdoor, you checking the phone, me beside you" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">02 • us</span><p>Just us standing there at night, but in that moment the whole world felt soft.</p></figcaption>
+            </figure>
+            <!-- 3 -->
+            <figure class="gallery-item" data-label="03 • makan time" data-text="Your serious-eating face is one of my favourite views, especially when we share the same table.">
+              <img src="images/photo-03.jpg" alt="You at the table with food" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">03 • makan time</span><p>Your serious-eating face is one of my favourite views, especially when we share the same table.</p></figcaption>
+            </figure>
+            <!-- 4 -->
+            <figure class="gallery-item" data-label="04 • hoodie baby" data-text="You turning back like this feels like you’re always checking if I’m still there — I am, always.">
+              <img src="images/photo-04.jpg" alt="Night street, you in hoodie looking back" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">04 • hoodie baby</span><p>You turning back like this feels like you’re always checking if I’m still there — I am, always.</p></figcaption>
+            </figure>
+            <!-- 5 -->
+            <figure class="gallery-item" data-label="05 • close" data-text="Late-night, tired faces, but hearts full because we get to end the day together.">
+              <img src="images/photo-05.jpg" alt="Close selfie at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">05 • close</span><p>Late-night, tired faces, but hearts full because we get to end the day together.</p></figcaption>
+            </figure>
+            <!-- 6 -->
+            <figure class="gallery-item" data-label="06 • teammate" data-text="My favourite teammate in every game, every match, and every season of life.">
+              <img src="images/photo-06.jpg" alt="Selfie in jerseys" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">06 • teammate</span><p>My favourite teammate in every game, every match, and every season of life.</p></figcaption>
+            </figure>
+            <!-- 7 -->
+            <figure class="gallery-item" data-label="07 • penat but happy" data-text="Penat, sweaty, but still smiling because we did it together.">
+              <img src="images/photo-07.jpg" alt="Sweaty sports selfie" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">07 • penat but happy</span><p>Penat, sweaty, but still smiling because we did it together.</p></figcaption>
+            </figure>
+            <!-- 8 -->
+            <figure class="gallery-item" data-label="08 • safe place" data-text="You sleeping by the window like this makes me want to protect you even more.">
+              <img src="images/photo-08.jpg" alt="You sleeping at car window" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">08 • safe place</span><p>You sleeping by the window like this makes me want to protect you even more.</p></figcaption>
+            </figure>
+            <!-- 9 -->
+            <figure class="gallery-item" data-label="09 • fries & feelings" data-text="Simple McD date, but my heart was very full, just watching you eat and talk.">
+              <img src="images/photo-09.jpg" alt="You at McDonald's with fries" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">09 • fries & feelings</span><p>Simple McD date, but my heart was very full, just watching you eat and talk.</p></figcaption>
+            </figure>
+            <!-- 10 -->
+            <figure class="gallery-item" data-label="10 • fighter" data-text="The way you hold that racket is exactly how you face life — kuat, confident, and a bit playful.">
+              <img src="images/photo-10.jpg" alt="You posing with racket in store" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">10 • fighter</span><p>The way you hold that racket is exactly how you face life — kuat, confident, and a bit playful.</p></figcaption>
+            </figure>
+            <!-- 11 -->
+            <figure class="gallery-item" data-label="11 • chaos duo" data-text="We may look chaotic here, but it’s the kind of chaos I never want to lose.">
+              <img src="images/photo-11.jpg" alt="Selfie of both of us at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">11 • chaos duo</span><p>We may look chaotic here, but it’s the kind of chaos I never want to lose.</p></figcaption>
+            </figure>
+            <!-- 12 -->
+            <figure class="gallery-item" data-label="12 • bringer of goodies" data-text="Your smile + food in hand = the exact definition of comfort to me.">
+              <img src="images/photo-12.jpg" alt="You smiling with plastic bags and food" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">12 • bringer of goodies</span><p>Your smile + food in hand = the exact definition of comfort to me.</p></figcaption>
+            </figure>
+            <!-- 13 -->
+            <figure class="gallery-item" data-label="13 • bright days" data-text="Even under harsh sunlight, you’re still the softest thing in the frame.">
+              <img src="images/photo-13.jpg" alt="Us in bright sunlight, peace sign" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">13 • bright days</span><p>Even under harsh sunlight, you’re still the softest thing in the frame.</p></figcaption>
+            </figure>
+            <!-- 14 -->
+            <figure class="gallery-item" data-label="14 • quiet ride" data-text="Those quiet rides where we just exist next to each other mean more than I say.">
+              <img src="images/photo-14.jpg" alt="Dark car selfie" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">14 • quiet ride</span><p>Those quiet rides where we just exist next to each other mean more than I say.</p></figcaption>
+            </figure>
+            <!-- 15 -->
+            <figure class="gallery-item" data-label="15 • little surprises" data-text="You always make even small surprises feel like the biggest gifts.">
+              <img src="images/photo-15.jpg" alt="Gift bag with small cake" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">15 • little surprises</span><p>You always make even small surprises feel like the biggest gifts.</p></figcaption>
+            </figure>
+            <!-- 16 -->
+            <figure class="gallery-item" data-label="16 • side view" data-text="Side profile, city lights, and me falling in love with your soft smile all over again.">
+              <img src="images/photo-16.jpg" alt="Side profile at night park" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">16 • side view</span><p>Side profile, city lights, and me falling in love with your soft smile all over again.</p></figcaption>
+            </figure>
+            <!-- 17 -->
+            <figure class="gallery-item" data-label="17 • candid" data-text="Random selfie, but I still screenshot it in my mind as ‘one of my favourites’.">
+              <img src="images/photo-17.jpg" alt="Half selfie with glasses" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">17 • candid</span><p>Random selfie, but I still screenshot it in my mind as “one of my favourites”.</p></figcaption>
+            </figure>
+            <!-- 18 -->
+            <figure class="gallery-item" data-label="18 • focused" data-text="I love how focused you get over the smallest things — it’s so, so cute.">
+              <img src="images/photo-18.jpg" alt="You looking down reading" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">18 • focused</span><p>I love how focused you get over the smallest things — it’s so, so cute.</p></figcaption>
+            </figure>
+            <!-- 19 -->
+            <figure class="gallery-item" data-label="19 • mirror us" data-text="Our mirror selfie era, where even fluorescent lights can’t dull how happy we look.">
+              <img src="images/photo-19.jpg" alt="Mirror selfie at canteen" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">19 • mirror us</span><p>Our mirror selfie era, where even fluorescent lights can’t dull how happy we look.</p></figcaption>
+            </figure>
+            <!-- 20 -->
+            <figure class="gallery-item" data-label="20 • sushi & you" data-text="Sushi plates on the table, but you’re still the main course for my eyes.">
+              <img src="images/photo-20.jpg" alt="Sushi date" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">20 • sushi & you</span><p>Sushi plates on the table, but you’re still the main course for my eyes.</p></figcaption>
+            </figure>
+            <!-- 21 -->
+            <figure class="gallery-item" data-label="21 • safe hands" data-text="Your hand in mine is the only confirmation I need that everything will be okay.">
+              <img src="images/photo-21.jpg" alt="Holding hands close-up" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">21 • safe hands</span><p>Your hand in mine is the only confirmation I need that everything will be okay.</p></figcaption>
+            </figure>
+            <!-- 22 -->
+            <figure class="gallery-item" data-label="22 • golden hour (at night)" data-text="It looks like golden hour but it’s night — maybe because you’re the one glowing.">
+              <img src="images/photo-22.jpg" alt="Warm-toned car selfie at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">22 • golden hour (at night)</span><p>It looks like golden hour but it’s night — maybe because you’re the one glowing.</p></figcaption>
+            </figure>
+            <!-- 23 -->
+            <figure class="gallery-item" data-label="23 • late-night us" data-text="We look sleepy, but my heart’s wide awake whenever I’m beside you.">
+              <img src="images/photo-23.jpg" alt="Another night selfie together" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">23 • late-night us</span><p>We look sleepy, but my heart’s wide awake whenever I’m beside you.</p></figcaption>
+            </figure>
+            <!-- 24 -->
+            <figure class="gallery-item" data-label="24 • hoodie face" data-text="Your hoodie face = my favourite comfort movie in real life.">
+              <img src="images/photo-24.jpg" alt="You in hoodie, close-up" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">24 • hoodie face</span><p>Your hoodie face = my favourite comfort movie in real life.</p></figcaption>
+            </figure>
+            <!-- 25 -->
+            <figure class="gallery-item" data-label="25 • parking lot giggles" data-text="You looking back at me in the parking lot like that will always be one of my soft spots.">
+              <img src="images/photo-25.jpg" alt="You smiling in parking area at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">25 • parking lot giggles</span><p>You looking back at me in the parking lot like that will always be one of my soft spots.</p></figcaption>
+            </figure>
+            <!-- 26 -->
+            <figure class="gallery-item" data-label="26 • hoodie mood" data-text="Even when you act fierce, I still see the softest soul behind those eyes.">
+              <img src="images/photo-26.jpg" alt="You in dark hoodie, serious face" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">26 • hoodie mood</span><p>Even when you act fierce, I still see the softest soul behind those eyes.</p></figcaption>
+            </figure>
+            <!-- 27 -->
+            <figure class="gallery-item" data-label="27 • ride with you" data-text="Motor, helmet, and you by my side — that’s my favourite kind of journey.">
+              <img src="images/photo-27.jpg" alt="You near motorbikes area" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">27 • ride with you</span><p>Motor, helmet, and you by my side — that’s my favourite kind of journey.</p></figcaption>
+            </figure>
+            <!-- 28 -->
+            <figure class="gallery-item" data-label="28 • bus chaos" data-text="You bullying me on the bus like this and I still love you… unbelievable.">
+              <img src="images/photo-28.jpg" alt="You poking my nose on bus" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">28 • bus chaos</span><p>You bullying me on the bus like this and I still love you… unbelievable.</p></figcaption>
+            </figure>
+            <!-- 29 -->
+            <figure class="gallery-item" data-label="29 • walking ahead" data-text="You always walk a little in front, but somehow your heart is always right beside mine.">
+              <img src="images/photo-29.jpg" alt="You walking away at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">29 • walking ahead</span><p>You always walk a little in front, but somehow your heart is always right beside mine.</p></figcaption>
+            </figure>
+            <!-- 30 -->
+            <figure class="gallery-item" data-label="30 • silly faces" data-text="Our silly-face selfies deserve their own museum section, honestly.">
+              <img src="images/photo-30.jpg" alt="Funny close-up selfie at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">30 • silly faces</span><p>Our silly-face selfies deserve their own museum section, honestly.</p></figcaption>
+            </figure>
+            <!-- 31 -->
+            <figure class="gallery-item" data-label="31 • soft lights" data-text="Cafe lights, your side profile, and me wishing time would slow down a bit more.">
+              <img src="images/photo-31.jpg" alt="You at cafe looking to the side" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">31 • soft lights</span><p>Cafe lights, your side profile, and me wishing time would slow down a bit more.</p></figcaption>
+            </figure>
+            <!-- 32 -->
+            <figure class="gallery-item" data-label="32 • shoulder pillow" data-text="Your head on my shoulder is the safest place I’ve ever known.">
+              <img src="images/photo-32.jpg" alt="You leaning on my shoulder in car" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">32 • shoulder pillow</span><p>Your head on my shoulder is the safest place I’ve ever known.</p></figcaption>
+            </figure>
+            <!-- 33 -->
+            <figure class="gallery-item" data-label="33 • recorded moments" data-text="Even the videos of us just eating feel like scenes from my favourite movie.">
+              <img src="images/photo-33.jpg" alt="Phone recording both of us on table" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">33 • recorded moments</span><p>Even the videos of us just eating feel like scenes from my favourite movie.</p></figcaption>
+            </figure>
+            <!-- 34 -->
+            <figure class="gallery-item" data-label="34 • fingers intertwined" data-text="Our fingers lock so naturally, like they were always meant to find each other.">
+              <img src="images/photo-34.jpg" alt="Holding hands on lap" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">34 • fingers intertwined</span><p>Our fingers lock so naturally, like they were always meant to find each other.</p></figcaption>
+            </figure>
+            <!-- 35 -->
+            <figure class="gallery-item" data-label="35 • pocky date" data-text="Snacks, parking lot, and your laugh — simple things, but they’re my happiness.">
+              <img src="images/photo-35.jpg" alt="Pocky box in your hand" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">35 • pocky date</span><p>Snacks, parking lot, and your laugh — simple things, but they’re my happiness.</p></figcaption>
+            </figure>
+            <!-- 36 -->
+            <figure class="gallery-item" data-label="36 • snack buddy" data-text="You and your favourite chips, me beside you — that’s my kind of perfect.">
+              <img src="images/photo-36.jpg" alt="You with yellow snack packets" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">36 • snack buddy</span><p>You and your favourite chips, me beside you — that’s my kind of perfect.</p></figcaption>
+            </figure>
+            <!-- 37 -->
+            <figure class="gallery-item" data-label="37 • hoodie nights" data-text="Hoodie on, serious face, but I know you’re really just my soft baby.">
+              <img src="images/photo-37.jpg" alt="You in hoodie at night near gate" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">37 • hoodie nights</span><p>Hoodie on, serious face, but I know you’re really just my soft baby.</p></figcaption>
+            </figure>
+            <!-- 38 -->
+            <figure class="gallery-item" data-label="38 • tired but cute" data-text="Even when you’re tired and just staring at the table, I’m still here admiring you.">
+              <img src="images/photo-38.jpg" alt="You resting on table, I’m beside" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">38 • tired but cute</span><p>Even when you’re tired and just staring at the table, I’m still here admiring you.</p></figcaption>
+            </figure>
+            <!-- 39 -->
+            <figure class="gallery-item" data-label="39 • jalan-jalan" data-text="Walking around with you, no big plan, just vibes and your hand near mine.">
+              <img src="images/photo-39.jpg" alt="You walking outdoors with bag" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">39 • jalan-jalan</span><p>Walking around with you, no big plan, just vibes and your hand near mine.</p></figcaption>
+            </figure>
+            <!-- 40 -->
+            <figure class="gallery-item" data-label="40 • forever us" data-text="No matter how many photos we take after this, these moments will always be my first favourite chapter with you.">
+              <img src="images/photo-40.jpg" alt="Holding hands on roadside at night" loading="lazy" />
+              <figcaption class="gallery-caption"><span class="label">40 • forever us</span><p>No matter how many photos we take after this, these moments will always be my first favourite chapter with you.</p></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>made with a very full heart &nbsp; <span class="heart">♥</span> &nbsp; by baby, just for you.</footer>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll back to top"><span>↑</span></button>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div class="lightbox-img-wrapper"><img id="lightboxImg" src="" alt="Memory" /></div>
+      <div class="lightbox-info">
+        <div>
+          <div class="lightbox-label" id="lightboxLabel">memory</div>
+          <div class="lightbox-text" id="lightboxText">caption</div>
+        </div>
+        <div class="lightbox-controls">
+          <button class="lb-btn" id="prevBtn">← previous</button>
+          <button class="lb-btn" id="nextBtn">next →</button>
+          <button class="lb-btn lb-btn-close" id="closeBtn">✕ close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function scrollToId(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth" }); }
+
+  // Audio toggle
+  (function () {
+    const audio = document.getElementById("bgAudio");
+    const btn = document.getElementById("audioToggle");
+    const status = document.getElementById("audioStatus");
+    if (!audio || !btn) return;
+    let isPlaying = false;
+    function setStatus(text) { if (status) status.textContent = text; }
+    btn.addEventListener("click", async () => {
+      try {
+        if (!isPlaying) {
+          await audio.play();
+          isPlaying = true;
+          btn.textContent = "⏸ Pause our song";
+          setStatus("Song is playing in the background while you scroll. If it stops, just tap play again.");
+        } else {
+          audio.pause();
+          isPlaying = false;
+          btn.textContent = "▶ Play our song here";
+          setStatus("Song paused. Tap play whenever you want to hear it again.");
+        }
+      } catch (e) {
+        setStatus("If nothing plays, make sure the file exists as audio/menamakanmu-cinta.mp3 in this repo.");
+      }
+    });
+    audio.addEventListener("ended", () => {
+      isPlaying = false;
+      btn.textContent = "▶ Play our song here";
+      setStatus("Song ended. Tap play if you want to hear it again.");
+    });
+  })();
+
+  // Gallery fade-in
+  (function () {
+    const items = document.querySelectorAll(".gallery-item");
+    if (!("IntersectionObserver" in window)) { items.forEach(item => item.classList.add("visible")); return; }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(item => observer.observe(item));
+  })();
+
+  // Lightbox
+  (function () {
+    const lightbox = document.getElementById("lightbox");
+    const imgEl = document.getElementById("lightboxImg");
+    const labelEl = document.getElementById("lightboxLabel");
+    const textEl = document.getElementById("lightboxText");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const gridItems = Array.from(document.querySelectorAll(".gallery-item"));
+    if (!lightbox || gridItems.length === 0) return;
+    let currentIndex = 0;
+    function openAt(index) {
+      const item = gridItems[index]; if (!item) return;
+      const img = item.querySelector("img");
+      const label = item.getAttribute("data-label") || "";
+      const text = item.getAttribute("data-text") || "";
+      imgEl.src = img ? img.src : "";
+      labelEl.textContent = label;
+      textEl.textContent = text;
+      lightbox.classList.add("active");
+      currentIndex = index;
+      document.body.style.overflow = "hidden";
+    }
+    function close() { lightbox.classList.remove("active"); document.body.style.overflow = ""; }
+    gridItems.forEach((item, index) => item.addEventListener("click", () => openAt(index)));
+    prevBtn.addEventListener("click", () => { currentIndex = (currentIndex - 1 + gridItems.length) % gridItems.length; openAt(currentIndex); });
+    nextBtn.addEventListener("click", () => { currentIndex = (currentIndex + 1) % gridItems.length; openAt(currentIndex); });
+    closeBtn.addEventListener("click", close);
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("active")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") nextBtn.click();
+      if (e.key === "ArrowLeft") prevBtn.click();
+    });
+  })();
+
+  // Scroll-to-top
+  (function () {
+    const btn = document.getElementById("scrollTopBtn");
+    if (!btn) return;
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 260) { btn.classList.add("visible"); } else { btn.classList.remove("visible"); }
+    });
+    btn.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+  })();
+</script>
+</body>
+</html>
